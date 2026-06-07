@@ -6,6 +6,30 @@ GhostWire is a lightweight, modular C2 framework designed for **controlled cyber
 
 **Built for:** Red team operators, threat hunters, and SOC analysts studying DNS tunneling and encrypted C2 traffic.
 
+
+## Demo
+
+### GhostWire Operator Console
+
+![GhostWire Console](media/ghost6.jpg)
+![GhostWire Console](media/ghost2.jpg)
+![GhostWire Console](media/ghost5.jpg)
+![GhostWire Console](media/ghost6.jpg)
+![GhostWire Console](media/ghost7.heic)
+
+
+
+## Skills Demonstrated
+
+- Python Development
+- Network Programming
+- DNS Protocol Analysis
+- Cryptography Concepts
+- Detection Engineering
+- Security Automation
+- Threat Emulation
+- MITRE ATT&CK Mapping
+- SQLite Persistence
 ---
 
 ## Architecture
