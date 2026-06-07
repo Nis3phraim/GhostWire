@@ -1,0 +1,32 @@
+# GhostWire .gitignore
+
+
+# Keys (Never commit private keys)
+keys/*.pem
+!keys/.gitkeep
+
+# Runtime data 
+data/*.db
+data/*.db-journal
+data/uploads/*
+!data/uploads/.gitkeep
+
+# Logs
+logs/*.log
+!logs/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+
+keys/*.pem
+keys/*.key
+keys/*.crt
+
+# OS
+.DS_Store
+Thumbs.db
+
