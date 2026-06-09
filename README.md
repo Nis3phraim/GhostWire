@@ -11,11 +11,11 @@ GhostWire is a lightweight, modular C2 framework designed for **controlled cyber
 
 ### GhostWire Operator Console
 
-![GhostWire Console](media/ghost6.jpg)
-![GhostWire Console](media/ghost2.jpg)
-![GhostWire Console](media/ghost5.jpg)
-![GhostWire Console](media/ghost7.heic)
-
+![GhostWire Console](media/ghost01.jpg)
+![GhostWire Console](media/ghost02.jpg)
+![GhostWire Console](media/ghost03.jpg)
+![GhostWire Console](media/ghost04.heic)
+![GhostWire Console](media/ghost05.jpg)
 
 
 ## Skills Demonstrated
