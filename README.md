@@ -14,7 +14,7 @@ GhostWire is a lightweight, modular C2 framework designed for **controlled cyber
 ![GhostWire Console](media/ghost01.jpg)
 ![GhostWire Console](media/ghost02.jpg)
 ![GhostWire Console](media/ghost03.jpg)
-![GhostWire Console](media/ghost04.heic)
+![GhostWire Console](media/ghost04.jpg)
 ![GhostWire Console](media/ghost05.jpg)
 
 
