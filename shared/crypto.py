@@ -4,13 +4,20 @@ GhostWire Crypto Module.
 Handles all encryption and decryption for C2 traffic.
 
 Two-layer encryption:
-1. RSA-2048 - Used ONCE to exchange the AES key safely
+1. RSA-2048-OAEP(SHA-256) - Used ONCE to exchange the AES key safely
 2. AES-256-CTR - Used for ALL data after key exchange
 
 Why both?
 RSA alone = too slow for large data
 AES alone = key distribution problem(how to share the key?)
 RSA + AES = RSA protects the key exchange, AES protects the data.
+
+SECURITY LIMITATIONS (documented 2026-11-16, see README "Cryptographic Security Notes"):
+- CTR is an unauthenticated mode: ciphertext is malleable and tampering is NOT
+  detectable by decrypt(). This module provides confidentiality only.
+- Static RSA key pair => no forward secrecy; private key is stored unencrypted.
+- Do not cite this module as production-grade. AES-256-GCM (AEAD) is the noted
+  future upgrade; the v1 wire protocol is intentionally left unchanged.
 """
 
 import os

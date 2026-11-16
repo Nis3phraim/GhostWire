@@ -2,7 +2,7 @@
 
 > **Educational Red Team Framework — DNS-Based Command & Control with AES-256 + RSA-2048**
 
-GhostWire is a lightweight, modular C2 framework designed for **controlled cybersecurity research, red team labs, and portfolio demonstration**. It demonstrates real-world adversary tradecraft over DNS covert channels, with strong encryption, session management, and file transfer capabilities.
+GhostWire is a lightweight, modular C2 framework designed for **controlled cybersecurity research, red team labs, and portfolio demonstration**. It demonstrates real-world adversary tradecraft over DNS covert channels, with hybrid encryption (RSA-2048 key exchange → AES-256-CTR sessions), session management, and file transfer capabilities.
 
 **Built for:** Red team operators, threat hunters, and SOC analysts studying DNS tunneling and encrypted C2 traffic.
 
@@ -43,6 +43,35 @@ GhostWire is a lightweight, modular C2 framework designed for **controlled cyber
 - **Routing:** DGA (Domain Generation Algorithm) with fallback domains
 - **Database:** SQLite session/command/result persistence
 - **Logging:** File-based audit log for all C2 events
+
+---
+
+## Cryptographic Security Notes (read this before citing the project)
+
+This is an **educational** cryptographic implementation, not a production-hardened
+secure protocol. Known limitations, stated plainly:
+
+- **AES-256-CTR provides confidentiality only — no integrity or authentication.**
+  Ciphertext is malleable: flipping ciphertext bit *i* flips plaintext bit *i*
+  predictably, and `decrypt()` cannot detect it. An on-path tamperer could alter
+  tasking or results without either side noticing. (A unit test demonstrates this
+  deliberately — see `test_crypto_unit.py`.)
+- **No forward secrecy.** Session keys are RSA-wrapped with one static server key
+  pair; whoever later obtains `keys/rsa_priv.pem` can decrypt any recorded session
+  whose key exchange they captured.
+- **Private key stored unencrypted on disk** (`keys/rsa_priv.pem`, `NoEncryption()`)
+  with no passphrase — convenient for a lab, wrong for production.
+- **No replay protection** at the crypto layer (each message carries a fresh random
+  IV, but nothing binds messages to a session counter or timestamp).
+
+**Future direction (not implemented, to keep the v1 wire protocol stable):**
+AES-256-GCM or another AEAD scheme would add per-message integrity with a minimal
+framing change; a v2 protocol would also want ephemeral key exchange for forward
+secrecy and key-file passphrase protection.
+
+Defenders: because valid CTR ciphertext is indistinguishable from random, detect
+GhostWire by **traffic shape**, not payload content — see the Blue Team section
+below (TXT-query cadence, label grammar, beacon intervals).
 
 ---
 
